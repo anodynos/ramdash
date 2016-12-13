@@ -1,4 +1,4 @@
-# ramdash v0.0.2 
+# ramdash v0.0.3 
 
 [![Build Status](https://travis-ci.org/anodynos/ramdash.svg?branch=master)](https://travis-ci.org/anodynos/ramdash)
 [![Up to date Status](https://david-dm.org/anodynos/ramdash.png)](https://david-dm.org/anodynos/ramdash)
@@ -37,7 +37,7 @@ In overall, its not meant to replace ramda's existing functions which should be 
 
   * `_.mapKeys`   like lodash 
   
-  * `_.isEmpty`   like lodash, sloving nasty incobatilities for `undefined`, `null`, `RegExp`, `Number` and new `String('')`
+  * `_.isEmpty`   like lodash, solving nasty incompatibilities for `undefined`, `null`, `RegExp`, `Number` and new `String('')`
   
 In iterating cases the Ramda [`forEach`](http://ramdajs.com/docs/#forEach) is used internally, so be aware of its caveats (it does not skip deleted or unassigned indices on sparse arrays). 
                                                            
