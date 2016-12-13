@@ -38,6 +38,8 @@ In overall, its not meant to replace ramda's existing functions which should be 
   * `_.mapKeys`   like lodash 
   
   * `_.isEmpty`   like lodash, solving nasty incompatibilities for `undefined`, `null`, `RegExp`, `Number` and new `String('')`
+
+  * `_.assign`    like lodash
   
 In iterating cases the Ramda [`forEach`](http://ramdajs.com/docs/#forEach) is used internally, so be aware of its caveats (it does not skip deleted or unassigned indices on sparse arrays). 
                                                            
@@ -55,6 +57,7 @@ If you have a custom R / requiring only specific modules, you need to pass an `R
     type 
     isEmpty 
     equals
+    is
 
 ## License
 
