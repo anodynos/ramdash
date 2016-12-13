@@ -32,7 +32,7 @@ VERSION = JSON.parse(fs.readFileSync('package.json')).version
 
 lodash.each [lodash, ramdash], (_R)->
 
-  describe "Using #{ if _R is lodash then 'lodash' else 'ramdash' }", ->
+  describe "############### Running all tests using #{ if _R is lodash then 'lodash' else 'ramdash' } ###############", ->
 
     if _R is ramdash
       describe "\n# ramdash v#{VERSION}", ->
@@ -113,6 +113,20 @@ lodash.each [lodash, ramdash], (_R)->
 
         result = _R.mapKeys obj, (val, indexOrKey, col)-> val + indexOrKey
         deepEqual result, {a0: 'a', b1: 'b', c2: 'c'}
+
+    describe '_.reduce', ->
+      add = (a, b) -> a + b
+
+      it 'it expects 3 arguments', ->
+        equal _R.reduce.length, 3
+
+      it "reduces array of integers with accumulator", ->
+        result = _R.reduce [1, 2, 3], add, 10
+        equal result, 16
+
+      it "uses the first element of the list if no accumulator is given", ->
+        result = _R.reduce [1, 2, 3], add
+        equal result, 6
 
     describe '_.assign', ->
       a = {a: 'a1'}

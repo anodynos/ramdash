@@ -26,11 +26,10 @@ module.exports = (R) ->
     # allow _.reduce to be used without initial/seed, using list[0] as seed.
     # It breaks if list is an {}
     reduce: (list, iterator, accumulator) ->
-      ` // optimize for size
-        return initial ?
-          reduce(iterator, accumulator, list) :
-          reduce(iterator, list[0], list.slice(1, +list.length + 1 || 9e9));
-      `
+      if accumulator
+        reduce(iterator, accumulator, list)
+      else
+        reduce(iterator, list[0], list[1..])
 
     map: (arr, iteratee = identity) ->
       result = []
@@ -82,12 +81,10 @@ module.exports = (R) ->
       return target
 
     isEmpty: (val) ->
-      if not val or
-          (type(val) in ['Null', 'Undefined', 'RegExp', 'Number']) or
-          equals(val, new String(''))
-        true
-      else
-        isEmpty val
+      not val or
+      (type(val) in ['Null', 'Undefined', 'RegExp', 'Number']) or
+      equals(val, new String('')) or
+      isEmpty val
   }
 
   return _;
