@@ -2,8 +2,6 @@ module.exports = gruntFunction = (grunt) ->
   gruntConfig =
     urequire:
       _all:
-        dependencies:
-          imports: ramda: ['R']
         runtimeInfo: false
         bare: true
         template:
@@ -19,6 +17,9 @@ module.exports = gruntFunction = (grunt) ->
       spec:
         path: 'source/spec'
         dstPath: 'build/spec'
+        dependencies: imports:
+          ramda: 'R'
+          lodash: '_'
         afterBuild: require('urequire-ab-specrunner').options
           mochaOptions: '--bail'
 
