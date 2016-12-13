@@ -1,12 +1,7 @@
-###
-Required from R:
-  forEach
-  reduce
-  keys
-  is
-###
-
 module.exports = (R) ->
+  # these are required from Ramda
+  {forEach, reduce, keys, type, isEmpty, equals} = R
+
   identity = (x) -> x
 
   return {
@@ -14,27 +9,27 @@ module.exports = (R) ->
 
     # @todo: break loop when false is returned, like lodash
     each: (collection, iteratee = identity) ->
-      if R.is(Array)(collection) or R.is(String)(collection)
+      if (type(collection) is 'Array') or type(collection) is 'String'
         i = 0
-        R.forEach ((val) -> iteratee val, i++, collection), collection
+        forEach ((val) -> iteratee val, i++, collection), collection
       else # assume {}
-        R.forEach (key) ->
+        forEach (key) ->
           iteratee collection[key], key, collection
-        , R.keys(collection)
+        , keys(collection)
 
     # allow _.reduce to be used without initial/seed, using list[0] as seed.
     # It breaks if list is an {}
     reduce: (list, iterator, accumulator) ->
       if initial
-        R.reduce iterator, accumulator, list
+        reduce iterator, accumulator, list
       else
-        R.reduce iterator, list[0], list[1..list.length]   #  breaks if list is an {}
+        reduce iterator, list[0], list[1..list.length]   #  breaks if list is an {}
 
     map: (arr, iteratee = identity) ->
       result = []
       i = 0
-      R.forEach (val) ->
-        result.push if R.is(Function) iteratee
+      forEach (val) ->
+        result.push if type(iteratee) is 'Function'
           iteratee val, i++, arr
         else
           val[iteratee]
@@ -46,17 +41,25 @@ module.exports = (R) ->
 
     mapValues: (obj, iteratee = identity) ->
       result = {}
-      R.forEach (key) ->
+      forEach (key) ->
         result[key] = iteratee obj[key], key, obj
-      , R.keys(obj)
+      , keys(obj)
 
       return result
 
     mapKeys: (obj, iteratee = identity) ->
       result = {}
-      R.forEach (key) ->
+      forEach (key) ->
         result[iteratee obj[key], key, obj] = obj[key]
-      , R.keys(obj)
+      , keys(obj)
 
       return result
+
+    isEmpty: (val) ->
+      if not val or
+        (type(val) in ['Null', 'Undefined', 'RegExp', 'Number']) or
+        equals(val, new String(''))
+          return true
+      else
+        isEmpty val
   }

@@ -14,6 +14,12 @@ module.exports = gruntFunction = (grunt) ->
         dstPath: 'build/code'
         resources: [ 'inject-version' ]
 
+      min:
+        derive: ['lib']
+        optimize: true
+        dstPath: 'build/code/min'
+        template: banner: false
+
       spec:
         path: 'source/spec'
         dstPath: 'build/spec'

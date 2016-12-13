@@ -1,7 +1,7 @@
 {
   "name": "ramdash",
   "description": "(Some) missing lodash functions for ramda.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "http://github.com/anodynos/ramdash/",
   "author": {
     "name": "Angelos Pikoulas",

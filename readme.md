@@ -19,7 +19,9 @@ So `_.each` was motivation number one - it works just like lodash (__missing onl
  
 In general, many iterator functions in Ramda accept only a `list` (i.e `[]`) whereas in lodash they accept a collection (i.e `[]` or `{}`). We have to adapt, but till then, some convenience please :-)  
 
-Also lodash has the convenient `_.mapValues` and `_.mapKeys` so these are transferred over.
+Also lodash has the convenient `_.mapValues` and `_.mapKeys` so these are transferred over. 
+
+There are some other nasty incompatibilties which I am hoping to cross over - please open an issue/PR if you want something added/changed. 
 
 In overall, its not meant to replace ramda's existing functions which should be preferred, since you 've decided to make the `ramda` leap anyway!
 
@@ -34,8 +36,10 @@ In overall, its not meant to replace ramda's existing functions which should be 
   * `_.mapValues` like lodash  
 
   * `_.mapKeys`   like lodash 
-
-In all cases Ramda [`forEach`](http://ramdajs.com/docs/#forEach) is used internally, so be aware of its caveats (it does not skip deleted or unassigned indices on sparse arrays). 
+  
+  * `_.isEmpty`   like lodash, sloving nasty incobatilities for `undefined`, `null`, `RegExp`, `Number` and new `String('')`
+  
+In iterating cases the Ramda [`forEach`](http://ramdajs.com/docs/#forEach) is used internally, so be aware of its caveats (it does not skip deleted or unassigned indices on sparse arrays). 
                                                            
 ## Usage:
 
@@ -45,10 +49,12 @@ Since it has NO dependency directly on `ramda`, you have to provide it so it can
 
 If you have a custom R / requiring only specific modules, you need to pass an `R` object with these keys:
 
-    forEach  
-    reduce
-    keys
-    is        
+    forEach 
+    reduce 
+    keys 
+    type 
+    isEmpty 
+    equals
 
 ## License
 

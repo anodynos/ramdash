@@ -124,3 +124,42 @@ describe '_.mapKeys', ->
       b1: 'b'
       c2: 'c'
     }
+
+
+describe '_.isEmpty', ->
+  it 'it expects one argument', ->
+    equal _R.isEmpty.length, 1
+
+  _.each [
+    [[], true]
+    [{}, true]
+    ['', true]
+    [new String(''), true]
+    [new String(), true]
+    [undefined, true]
+    [null, true]
+    [-1, true]
+    [0, true]
+    [1, true]
+    [new Number(-1), true]
+    [new Number(1), true]
+    [new Number(0), true]
+    [new Number(), true]
+    [/./, true]
+    [/.a/g, true]
+    [new RegExp('/.a/g'), true]
+
+    [[0], false]
+    [[undefined], false]
+    [{a:1}, false]
+    [{a:undefined}, false]
+    ['0', false]
+    [new String('0'), false]
+
+  ], ([input, expected]) ->
+
+    it """lodash returns #{expected} for "#{input}" of type `#{R.type input}`""", ->
+      equal _.isEmpty(input), expected
+
+    it """ramdash returns #{expected} for "#{input}" of type `#{R.type input}`""", ->
+      equal _R.isEmpty(input), expected
