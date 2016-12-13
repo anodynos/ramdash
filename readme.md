@@ -1,4 +1,4 @@
-# ramdash v0.0.3 
+# ramdash v0.0.4 
 
 [![Build Status](https://travis-ci.org/anodynos/ramdash.svg?branch=master)](https://travis-ci.org/anodynos/ramdash)
 [![Up to date Status](https://david-dm.org/anodynos/ramdash.png)](https://david-dm.org/anodynos/ramdash)
