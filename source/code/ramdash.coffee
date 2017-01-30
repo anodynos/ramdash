@@ -5,7 +5,6 @@ module.exports = (R) ->
   identity = (x) -> x
 
   _ = {
-    VERSION: "ramdash@#{VERSION}"
 
     # @todo: break loop when false is returned, like lodash
     each: (collection, iteratee = identity) ->
@@ -72,8 +71,7 @@ module.exports = (R) ->
 
       forEach (source) ->
         _.each source, (val, key) ->            # _.each cause we iterate keys
-          if {}.hasOwnProperty.call source, key
-            target[key] = val
+          target[key] = val
           return
         return                                  # for size optimization :-)
       , sources
@@ -81,10 +79,15 @@ module.exports = (R) ->
       return target
 
     isEmpty: (val) ->
-      not val or
-      (type(val) in ['Null', 'Undefined', 'RegExp', 'Number']) or
-      equals(val, new String('')) or
-      isEmpty val
+      (not val) or
+      (val is true) or
+      (type(val) is 'Array' and val.length is 0) or
+      ((R.keys(val).length is 0) and (
+        (type(val) in ['RegExp', 'Number', 'Boolean']) or
+        equals(val, new String(''))
+      )) or
+      (type(val) is 'NodeList' and val.length is 0) or
+      isEmpty(val)
   }
 
   return _;

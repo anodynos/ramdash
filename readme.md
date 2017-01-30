@@ -1,4 +1,4 @@
-# ramdash v0.0.4 
+# ramdash v0.0.5 
 
 [![Build Status](https://travis-ci.org/anodynos/ramdash.svg?branch=master)](https://travis-ci.org/anodynos/ramdash)
 [![Up to date Status](https://david-dm.org/anodynos/ramdash.png)](https://david-dm.org/anodynos/ramdash)
@@ -37,7 +37,7 @@ In overall, its not meant to replace ramda's existing functions which should be 
 
   * `_.mapKeys`   like lodash 
   
-  * `_.isEmpty`   like lodash, solving nasty incompatibilities for `undefined`, `null`, `RegExp`, `Number` and new `String('')`
+  * `_.isEmpty`   like lodash, solving nasty Ramda incompatibilities for `undefined`, `null`, `RegExp`, `Number`, new `String('')` and empty `NodeList`, which aren't considered empty in Ramda :-( 
 
   * `_.assign`    like lodash
   
@@ -47,9 +47,11 @@ In iterating cases the Ramda [`forEach`](http://ramdajs.com/docs/#forEach) is us
 
 Since it has NO dependency directly on `ramda`, you have to provide it so it can be injected - i.e:  
 
-    var _ = require('ramdash')(R)  
+    var R = require('ramda);
+    
+    var _ = require('ramdash')(R);  
 
-If you have a custom R / requiring only specific modules, you need to pass an `R` object with these keys:
+If you have a custom R / requiring only specific modules, you need to pass an `R` like object with these keys at least:
 
     forEach 
     reduce 
