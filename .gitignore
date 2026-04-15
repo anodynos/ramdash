@@ -1,4 +1,59 @@
-.idea
-node_modules
-build
-DRAFT
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules/
+
+# Coverage
+coverage/
+
+# VS Code
+.vscode
+!.vscode/tasks.js
+.history/
+
+# JetBrains IDEs
+.idea/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Misc
+.DS_Store
+
+dist/
+DRAFT/
+
+# helm dependencies
+helm/charts
+helm/requirements.lock
+
+*.tsbuildinfo
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# @todo: custom - move to repo
+packages/uberscore/src/code/loopzen/__tests__/all-typings/_generated/
+
+# NOTE: here we should be excluding /packages/ but lerna has a bug (causing it to NOT respect dependency ordering, when /packages is in .gitignore)
+# See https://github.com/lerna/lerna/issues/3416#issuecomment-1306764662
+# NOT WORKING: Workaround to exclude it in .git/info/exclude instead of .gitignore - same end result
+#/packages/
+/~temp/output-files/critical-errors-only-printed-by-kid.txt
+/~temp/output-files/fileJSON-output.txt
+
+# Claude Code worktrees
+.claude/worktrees/
+
+# Temp folders
+.temp-bridge/
+.playwright-mcp/
+
+
